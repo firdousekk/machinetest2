@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="background-color: rgb(208, 141, 247); width: 300px;padding:40px;">
+        <h1>SIGNUP FORM</h1>
+     
+     <table>
+         <form action="homeexm">
+            <tr>
+                <td></td>
+                <td><span id="lemail_err"></span></td></tr>
+            <tr>
+               <td><label for="">Email*</label></td>
+                <td><input type="email" id="lemail"></td>
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td><span id="lpassword_err"></span></td></tr>
+            <tr>
+                <td><label for="">Password*</label></td>
+               <td> <input type="password" id="lpassword"></td>
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td><button type="submit" onclick="return login()">LOGIN</button></td></tr>
+            </form>
+     </table>
+    </div>
+
+
+<script>
+    function login(){
+    var lemail=document.getElementById("lemail")
+    var lpassword=document.getElementById("lpassword")
+    var lemail_err=document.getElementById("lemail_err")
+    var lpassword_err=document.getElementById("lpassword_err")
+    var temp=0
+
+    //get data from localstorage
+
+    var getemail=localStorage.getItem('useremail')
+    var getpassword=localStorage.getItem('userpassword')
+
+    if(lemail.value!=getemail)
+    {
+          lemail_err.innerHTML='*Email does\'nt exist'
+          lemail_err.style.color='red'
+          lemail.style.borderColor='red'
+          return false
+    }
+    else
+    {
+        lemail_err.innerHTML=''
+        lemail.style.borderColor=''
+    }
+
+
+    
+    if(lpassword.value != getpassword)
+    {
+          lpassword_err.innerHTML='*password does\'nt exist'
+          lpassword_err.style.color='red'
+          lpassword.style.borderColor='red'
+          return false
+    
+          
+
+    }
+    else
+    {
+        if(temp==3)
+          {
+            alert('you entered many times')
+          }
+        lpassword_err.innerHTML=''
+        lpassword.style.borderColor=''
+    }
+
+
+
+    }
+</script>
+
+</body>
+</html>

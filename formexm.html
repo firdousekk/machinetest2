@@ -1,0 +1,312 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <div style="background-color: rgb(208, 141, 247); width: 300px;padding:40px;">
+       <h1>SIGNUP FORM</h1>
+    
+    <table>
+        <form action="loginexm">
+        <tr>
+            <td></td>
+            <td><span id="name_err"></span></td></tr>
+        <tr>
+            <td><label for="">Firstname*</label></td>
+           <td><input type="text" id="name"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><span id="lstname_err"></span></td></tr>
+        <tr>
+            <td><label for="">Lastname</label></td>
+            <td><input type="text" id="lst_name"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><span id="email_err"></span></td></tr>
+        <tr>
+           <td><label for="">Email*</label></td>
+            <td><input type="email" id="email"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><span id="mobile_err"></span></td></tr>
+        <tr>
+            <td><label for="">mobile*</label></td>
+           <td> <input type="text" id="mobile"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><span id="password_err"></span></td></tr>
+        <tr>
+            <td><label for="">Password*</label></td>
+           <td> <input type="password" id="password"></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><span id="cpassword_err"></span></td></tr>
+        <tr>
+            <td><label for="">Confirm Password*</label></td>
+           <td><input type="password" id="cpassword"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit" onclick="return validate()">SIGNUP</button></td></tr>
+        </form>
+    </table>
+    
+
+</div>
+
+
+<script>
+    function validate()
+    {
+        var txt_name=document.getElementById('name')
+        var txt_lstname=document.getElementById('lst_name')
+        var email=document.getElementById('email')
+        var mobile=document.getElementById('mobile')
+        var password=document.getElementById('password')
+        var cpassword=document.getElementById('cpassword')
+        var name_err=document.getElementById('name_err')
+        var lstname_err=document.getElementById('lstname_err')
+        var email_err=document.getElementById('email_err')
+        var mobile_err=document.getElementById('mobile_err')
+        var password_err=document.getElementById('password_err')
+        var cpassword_err=document.getElementById('cpassword_err')
+        var name_pattern=/^[a-z A-Z]+$/
+        var password_pattern=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+        var mobile_pattern=/^[789]\d{9}$/
+        var email_pattern=/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/
+
+
+
+        if(txt_name.value=="")
+        {
+            name_err.innerHTML='please enter the first name'
+            name_err.style.color='red'
+            txt_name.style.border='1px solid red'
+            txt_name.focus()
+            return false
+
+        }
+         
+        
+       
+        else
+        {  
+            if(txt_name.value.match(name_pattern) == null)
+            {
+            name_err.innerHTML="name should contain alphabets only"
+            name_err.style.color="red"
+            txt_name.style.border="1px solid red"
+            txt_name.focus()
+            return false
+            }
+
+            if(txt_name.value.length<3)
+            {
+              name_err.innerHTML='name must contain atleast 3 cherecters'
+              name_err.style.color='red'
+              txt_name.style.border='1px solid red'
+              txt_name.focus()
+              return false
+            }
+    
+
+
+         name_err.innerHTML=""
+         txt_name.style.border=""
+
+
+        }
+
+        if(txt_lstname.value=="")
+        {
+            lstname_err.innerHTML=''
+            lstname_err.style.color=''
+            txt_lstname.style.border=''
+            txt_lstname.focus()
+            
+            
+        }
+        else
+        {    
+
+            if(txt_lstname.value.match(name_pattern) == null)
+            {
+             lstname_err.innerHTML="name should contain alphabets only"
+             lstname_err.style.color="red"
+             txt_lstname.style.border="1px solid red"
+             txt_lstname.focus()
+             return false
+           }
+        
+            
+         lstname_err.innerHTML=""
+         txt_lstname.style.border=""
+        }
+
+
+
+        if(email.value=="")
+        {
+            
+            email_err.innerHTML='please enter the email'
+            email_err.style.color='red'
+            email.style.border='1px solid red'
+            email.focus()
+            return false
+           
+        }
+        else
+        {
+            if(email.value.match(email_pattern) == null)
+            {
+              email_err.innerHTML="enter email in valid formate"
+              email_err.style.color="red"
+              email.style.border="1px solid red"
+              email.focus()
+              return false
+            }
+
+         localStorage.setItem('useremail',email.value)//local storage of email
+         email_err.innerHTML=""
+         email.style.border=""
+        
+        }
+
+
+        if(mobile.value=="")
+        {
+            
+            mobile_err.innerHTML='please enter the  mobile number'
+            mobile_err.style.color='red'
+            mobile.style.border='1px solid red'
+            mobile.focus()
+            return false
+           
+        }
+        else
+        {
+            if(mobile.value.match(mobile_pattern) == null)
+            {  
+            mobile_err.innerHTML='please enter number in valid formate'
+            mobile_err.style.color='red'
+            mobile.style.border='1px solid red'
+            mobile.focus()
+            return false
+
+            }
+
+
+         mobile_err.innerHTML=''
+         mobile.style.border=''
+        
+        }
+
+
+
+
+
+
+
+        if(password.value=="")
+        {
+            password_err.innerHTML='please enter the password'
+            password_err.style.color='red'
+            password.style.border='1px solid red'
+            password.focus()
+            return false
+           
+        }
+         else
+        {
+            if(password.value.match(password_pattern)==null)
+            {
+              password_err.innerHTML="enter passsword  should be 1 letter and number"
+              password_err.style.color="red"
+              password.style.border="1px solid red"
+              password.focus()
+              return false
+            }
+
+         localStorage.setItem('userpassword',password.value)
+         password_err.innerHTML=""
+         password.style.border=""
+        
+        }
+
+
+
+        
+        if(cpassword.value=="")
+        {
+            cpassword_err.innerHTML='please enter the confirmation password'
+            cpassword_err.style.color='red'
+            cpassword.style.border='1px solid red'
+            cpassword.focus()
+            return false
+           
+        }
+         else
+        {
+            // if(cpassword.value.match(password_pattern)==null)
+            // {
+            //   cpassword_err.innerHTML="enter passsword in valid formate it should contain atleast 8 cherecters of compination  numbers,letters,special cherecters and not include white spaces"
+            //   cpassword_err.style.color="red"
+            //   cpassword.style.border="1px solid red"
+            //   cpassword.focus()
+            //   return false
+            // }
+            if(password.value != cpassword.value)
+            {
+              cpassword_err.innerHTML="passsword mismatch"
+              cpassword_err.style.color="red"
+              cpassword.style.border="1px solid red"
+              cpassword.focus() 
+              return false
+
+              
+
+            }
+
+
+         cpassword_err.innerHTML=""
+         cpassword.style.border=""
+        
+        }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    
+
+</script>
+</body>
+</body>
+</html>
